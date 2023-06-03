@@ -32,9 +32,12 @@ public class MainFrame extends JFrame implements ActionListener {
     String propertiesFilePath;
     Properties properties;
 
-    public MainFrame(Root rt) {
+    public MainFrame(Root root) {
         super("SSI_FellowClaim");
-        root = rt;
+        this.root = root;
+    }
+
+    public void init() {
 
         checkFile("system.properties");
         properties = Utils.readProperties();
@@ -49,7 +52,7 @@ public class MainFrame extends JFrame implements ActionListener {
 
         personalDetailsPanel = new PersonalDetailsPanel();
         bankDetailsPanel = new BankDetailsPanel();
-        expenditurePanel = new ExpenditurePanel(rt);
+        expenditurePanel = new ExpenditurePanel(root);
 
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         JTabbedPane tabbedPane = new JTabbedPane();
@@ -143,7 +146,6 @@ public class MainFrame extends JFrame implements ActionListener {
         }
         if (e.getActionCommand().equals("Save")) {
             save();
-
             expenseSummaryPanel.updateData(root.getAllSections());//.getSection3(), allSections.getExpenses()
 
         }

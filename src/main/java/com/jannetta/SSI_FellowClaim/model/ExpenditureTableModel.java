@@ -1,5 +1,7 @@
 package com.jannetta.SSI_FellowClaim.model;
 
+import com.jannetta.SSI_FellowClaim.Root;
+
 import javax.swing.table.AbstractTableModel;
 import java.util.Collections;
 
@@ -8,10 +10,12 @@ public class ExpenditureTableModel extends AbstractTableModel {
     double travelTotal = 0;
     double subsistenceTotal = 0;
     double grandTotal = 0;
+    Root root;
 
-    public ExpenditureTableModel(Expenses expenses) {
+    public ExpenditureTableModel(Root root) {
         super();
-        arr_expenses = expenses;
+        this.root = root;
+        arr_expenses = root.getAllSections().getExpenses();
     }
 
     public void setExpenses(Expenses expenses) {
@@ -29,8 +33,18 @@ public class ExpenditureTableModel extends AbstractTableModel {
     public void updateData(Expenses expenses) {
         arr_expenses = expenses;
         expenses.updateTotals();
-        fireTableDataChanged();
+    }
+    public void updateData(Expenses expenses, boolean fireChange) {
+        updateData(expenses);
+        if (fireChange)
+            fireTableDataChanged();
+    }
 
+    @Override
+    public void fireTableDataChanged() {
+        super.fireTableDataChanged();
+        updateData(root.getAllSections().getExpenses());
+        root.getMainFrame().getExpenseSummaryPanel().updateData(root.getAllSections());
     }
 
     /**

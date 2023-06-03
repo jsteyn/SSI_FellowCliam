@@ -13,6 +13,7 @@ public class Root {
     Root() {
         allSections = new AllSections();
         mainFrame = new MainFrame(this);
+        mainFrame.init();
     }
 
 

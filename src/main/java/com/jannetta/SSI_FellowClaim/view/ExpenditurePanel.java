@@ -24,7 +24,7 @@ public class ExpenditurePanel extends JPanel {
         super();
         root = r;
         Expenses expenses = root.getAllSections().getExpenses();
-//        expenseSummaryPanel = r.getMainFrame().getExpenseSummaryPanel();
+        expenseSummaryPanel = r.getMainFrame().getExpenseSummaryPanel();
         final JPopupMenu popupMenu = new JPopupMenu();
         JMenuItem deleteItem = new JMenuItem("Delete");
         deleteItem.addActionListener(new ActionListener() {
@@ -42,7 +42,7 @@ public class ExpenditurePanel extends JPanel {
             }
         });
         popupMenu.add(deleteItem);
-        expenditureTableModel = new ExpenditureTableModel(expenses);
+        expenditureTableModel = new ExpenditureTableModel(root);
         tbl_expenditure = new JTable(expenditureTableModel);
         tbl_expenditure.setComponentPopupMenu(popupMenu);
         tbl_expenditure.setComponentPopupMenu(popupMenu);
@@ -58,9 +58,9 @@ public class ExpenditurePanel extends JPanel {
     }
 
     public void updateTable(Expenses expenses) {
-        expenditureTableModel.updateData(expenses);
+        expenditureTableModel.updateData(expenses, true);
         expenditureTableModel.fireTableDataChanged();
-        //expenseSummaryPanel.updateData(root.getAllSections());
+        expenseSummaryPanel.updateData(root.getAllSections());
         repaint();
     }
 

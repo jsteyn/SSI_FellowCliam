@@ -77,6 +77,7 @@ public class ExpenseSummaryPanel extends JPanel implements ActionListener {
     }
 
     public void updateData(AllSections allSections) {
+        clearAll();
         logger.log(Level.INFO, "Updating ExpenseSummaryPanel");
         setTravelTotal(allSections.getExpenses().getTravelTotal());
         setMileageTotal(allSections.getExpenseSummary().getMileageTotal());
@@ -93,6 +94,16 @@ public class ExpenseSummaryPanel extends JPanel implements ActionListener {
         if (!allSections.getExpenseSummary().getSignatureFile().equals("unset")) {
             displaySignature(new File(allSections.getExpenseSummary().getSignatureFile()));
         }
+    }
+
+    public void clearAll() {
+        txt_travelTotal.setText("0");
+        txt_perMile.setText("0");
+        txt_mileageTotal.setText("0");
+        txt_subsistence.setText("0");
+        txt_other.setText("0");
+        txt_grandTotal.setText("0");
+
     }
 
 
