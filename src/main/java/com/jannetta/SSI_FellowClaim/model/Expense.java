@@ -34,6 +34,18 @@ public class Expense implements Comparable<Expense> {
         this.receipt_number = 0;
     }
 
+    /**
+     * Construct a new expense specifying the receipt number
+     * @param receipt_number
+     */
+    public Expense(int receipt_number) {
+        this.description = "";
+        this.expenseType = "UNSET";
+        this.amount_currency = 0;
+        this.amount_gbp = 0;
+        this.receipt_number = receipt_number;
+    }
+
     public String getDescription() {
         return description;
     }

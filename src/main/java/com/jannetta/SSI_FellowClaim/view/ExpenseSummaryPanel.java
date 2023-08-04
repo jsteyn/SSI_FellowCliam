@@ -90,10 +90,15 @@ public class ExpenseSummaryPanel extends JPanel implements ActionListener {
         setSignatureFile(allSections.getExpenseSummary().getSignatureFile());
         setSignedDate(allSections.getExpenseSummary().getSignedDate());
         setGrandTotal(allSections.getExpenses().getGrandTotal());
-        if  (!(allSections.getExpenseSummary().getSignatureFile()==null))
-        if (!allSections.getExpenseSummary().getSignatureFile().equals("unset")) {
+        File signature = new File(allSections.getExpenseSummary().getSignatureFile());
+        if (signature.exists()) {
             displaySignature(new File(allSections.getExpenseSummary().getSignatureFile()));
         }
+
+//        if  (!(allSections.getExpenseSummary().getSignatureFile()==null))
+//        if (!allSections.getExpenseSummary().getSignatureFile().equals("unset")) {
+//            displaySignature(new File(allSections.getExpenseSummary().getSignatureFile()));
+//        }
     }
 
     public void clearAll() {
@@ -214,7 +219,7 @@ public class ExpenseSummaryPanel extends JPanel implements ActionListener {
                     .getScaledInstance(100, 100, Image.SCALE_SMOOTH);
             lbl_signature.setIcon(new ImageIcon(newResizedImage));
         } catch (IOException ex) {
-            throw new RuntimeException(ex);
+            throw new RuntimeException();
         }
 
     }

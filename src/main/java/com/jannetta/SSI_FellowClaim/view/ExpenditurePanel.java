@@ -12,7 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ExpenditurePanel extends JPanel {
-    JTable tbl_expenditure;
+    ExpenditureTable tbl_expenditure;
     JScrollPane scrollPane;
 
     MigLayout migLayout;
@@ -43,14 +43,14 @@ public class ExpenditurePanel extends JPanel {
         });
         popupMenu.add(deleteItem);
         expenditureTableModel = new ExpenditureTableModel(root);
-        tbl_expenditure = new JTable(expenditureTableModel);
+        tbl_expenditure = new ExpenditureTable(expenditureTableModel);
         tbl_expenditure.setComponentPopupMenu(popupMenu);
         tbl_expenditure.setComponentPopupMenu(popupMenu);
         scrollPane = new JScrollPane(tbl_expenditure);
         migLayout = new MigLayout("fillx");
         setLayout(migLayout);
         JPanel pnl_header = new JPanel();
-        pnl_header.add(new JLabel("List of expenditurePanel - Non staff/student expense claim"));
+        pnl_header.add(new JLabel("Non staff/student expense claim"));
         setUpExpenseTypeColumn(tbl_expenditure, tbl_expenditure.getColumnModel().getColumn(1));
         tbl_expenditure.setFillsViewportHeight(true);
         add(pnl_header, "span, wrap");

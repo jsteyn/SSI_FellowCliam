@@ -96,7 +96,7 @@ public class ExpenditureTableModel extends AbstractTableModel {
     public void setValueAt(Object value, int row, int col) {
         int startRow = arr_expenses.size();
         for (int r = startRow; r <= row; r++)
-            arr_expenses.add(new Expense());
+            arr_expenses.add(new Expense(startRow + 1));
         if (startRow <= row)
             fireTableRowsInserted(startRow, row);
 

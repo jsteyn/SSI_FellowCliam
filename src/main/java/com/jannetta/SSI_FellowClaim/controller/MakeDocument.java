@@ -21,7 +21,6 @@ import com.itextpdf.layout.properties.TextAlignment;
 import com.itextpdf.layout.properties.UnitValue;
 import com.jannetta.SSI_FellowClaim.model.AllSections;
 import com.jannetta.SSI_FellowClaim.model.Expense;
-import com.spire.pdf.FileFormat;
 
 import java.io.File;
 import java.io.IOException;
@@ -115,9 +114,7 @@ public class MakeDocument {
         com.spire.pdf.PdfDocument doc = new com.spire.pdf.PdfDocument();
         //Load the sample PDF file
         doc.loadFromFile("data/merged.pdf");
-
-        //Save as. docx file
-        doc.saveToFile("data/merged.docx",FileFormat.DOCX);
+        doc.saveToFile("data/merged.docx", com.spire.pdf.FileFormat.DOCX);
         doc.close();
     }
 

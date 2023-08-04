@@ -19,7 +19,7 @@ import java.io.IOException;
 
 public class MakeDocument1 {
 
-    public static final String UE = "UniversityOfEdinburgh.png";
+    public static final String UE = "data/UniversityOfEdinburgh.png";
 
     public static void print(String signature, String dest) throws IOException {
         PdfWriter writer = new PdfWriter(dest);

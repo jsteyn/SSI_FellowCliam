@@ -103,10 +103,18 @@ public class MainFrame extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Print")) {
-            try {
-                MakeDocument.print(expenseSummaryPanel.getSignature(), "data/output.pdf", root.getAllSections());
-            } catch (Exception ex) {
-                throw new RuntimeException(ex);
+            File signature = new File(expenseSummaryPanel.getSignature());
+            if (!signature.exists()) {
+                JOptionPane.showInternalMessageDialog(null,
+                        "You have not linked a file for your signature. I cannot continue creating your documents without it.");
+            } else {
+                try {
+                    MakeDocument.print(expenseSummaryPanel.getSignature(), "data/output.pdf", root.getAllSections());
+                    JOptionPane.showInternalMessageDialog(this, "Your documents have been created.",
+                            "", JOptionPane.INFORMATION_MESSAGE);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         }
         if (e.getActionCommand().equals("Open")) {
